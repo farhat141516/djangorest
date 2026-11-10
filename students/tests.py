@@ -5,11 +5,10 @@ from rest_framework.test import APITestCase
 class StudentApiTests(APITestCase):
     list_url = '/api/students/'
 
-    def test_homepage_redirects_to_swagger_docs(self):
+    def test_homepage_is_not_found(self):
         response = self.client.get('/')
 
-        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
-        self.assertEqual(response['Location'], '/api/docs/')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_student_api_has_one_canonical_route(self):
         self.assertEqual(
